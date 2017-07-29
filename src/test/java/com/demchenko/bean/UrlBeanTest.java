@@ -1,4 +1,4 @@
-package com.demchenko.service;
+package com.demchenko.bean;
 
 import com.demchenko.bean.UrlBean;
 import org.junit.Assert;
@@ -11,14 +11,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
-@PropertySource("classpath:url.test.properties")
 public class UrlBeanTest {
     @Autowired
     UrlBean urlBean;
 
     @Test
-    public void testHost() {
-        Assert.assertNotNull(urlBean.getHost());
-        Assert.assertEquals("google.com", urlBean.getHost());
+    public void testHostSchemaPath() {
+        Assert.assertEquals("developers.ria.com", urlBean.getHost());
+        Assert.assertEquals("https", urlBean.getScheme());
+        Assert.assertEquals("auto/search", urlBean.getSearch());
+    }
+
+    @Test
+    public void testParameters() {
+        Assert.assertTrue(urlBean.getParam().containsKey("gearbox.4"));
     }
 }
