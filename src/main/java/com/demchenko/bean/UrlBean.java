@@ -12,7 +12,9 @@ import java.util.Map;
 public class UrlBean {
     private String scheme;
     private String host;
-    private String path;
+    private String search;
+    private String info;
+    private String api_key;
     private Map<String, String> param;
 
     public String getScheme() {
@@ -31,17 +33,34 @@ public class UrlBean {
         this.host = host;
     }
 
-    public String getPath() {
-        return path;
+    public String getSearch() {
+        return search;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public String getApi_key() {
+        return api_key;
+    }
+
+    public void setApi_key(String api_key) {
+        this.api_key = api_key;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public MultiValueMap<String, String> getParametersMap() {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.setAll(this.param);
+        map.add("api_key", api_key);
         return map;
     }
 
