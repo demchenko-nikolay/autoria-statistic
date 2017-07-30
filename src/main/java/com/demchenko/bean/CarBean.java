@@ -3,9 +3,17 @@ package com.demchenko.bean;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 // TODO: 29.07.17 Analyze data types and migrate to another database
 @Data
-public class CarBean {
+@Entity
+public class CarBean implements Serializable {
+    @Id
+    private Long id;
     private String userId;
     private String chipsCount;
     private String locationCityName;
@@ -13,7 +21,7 @@ public class CarBean {
     private Boolean exchangePossible;
     private Boolean realtyExchange;
     private String exchangeType;
-    private Integer exchangeTypeId;
+    private String exchangeTypeId;
     private String addDate;
     private String updateDate;
     private String expireDate;
@@ -33,6 +41,12 @@ public class CarBean {
     private String linkToView;
     private String title;
     private String isLeasing;
+    @Embedded
     private UserPhoneData userPhoneData;
+    @Embedded
     private AutoData autoData;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

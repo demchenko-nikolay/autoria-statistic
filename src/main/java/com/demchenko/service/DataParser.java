@@ -18,13 +18,16 @@ public class DataParser {
     @Autowired
     UrlBuilder urlBuilder;
 
-    // TODO: 29.07.17 Create Enum for these parameters
-    public static final boolean SEARCH_PATH = true;
-    public static final boolean INFO_PATH = false;
+    public Integer getNumberOfAds() throws JSONException {
+        String url = urlBuilder.createSearchUrl("1");
+        String response = dataInvoker.getAllAdIds(url);
+        Integer numberOfAds =  new JSONObject(response).getJSONObject("result").getJSONObject("search_result").getInt("count");
+        return numberOfAds;
+    }
 
-    public List<String> getAllAdIds() throws JSONException {
+    public List<String> getAllAdIds(String page) throws JSONException {
         List<String> allIds = new LinkedList<>();
-        String url = urlBuilder.createSearchUrl();
+        String url = urlBuilder.createSearchUrl(page);
         String response = dataInvoker.getAllAdIds(url);
         JSONArray jsonArray =  new JSONObject(response).getJSONObject("result").getJSONObject("search_result").getJSONArray("ids");
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -33,9 +36,9 @@ public class DataParser {
         return allIds;
     }
 
-    public List<CarBean> getAdsByIds(List<String> ids) {
-        List<CarBean> carBeans = new LinkedList<>();
-
-        return carBeans;
+    public CarBean getCarBeanById(String id) {
+        String url = urlBuilder.createInfoUrl(id);
+        CarBean carBean = dataInvoker.getAdInformationById(url);
+        return carBean;
     }
 }

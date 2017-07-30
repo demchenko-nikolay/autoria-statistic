@@ -2,7 +2,10 @@ package com.demchenko.bean;
 
 import lombok.Data;
 
+import javax.persistence.Embeddable;
+
 @Data
+@Embeddable
 public class AutoData {
     private String description;
     private String version;

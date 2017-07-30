@@ -15,7 +15,7 @@ public class UrlBuilderTest {
 
     @Test
     public void testCreatedUrl() {
-        String url = urlBuilder.createSearchUrl();
+        String url = urlBuilder.createSearchUrl("1");
         Assert.assertNotNull(url);
         Assert.assertTrue(url.startsWith("https"));
         Assert.assertTrue(url.contains("api_key=aChgT7mzZKxEM9LXuB3qnPCanyvFwkovnkr7EOPT"));
@@ -31,7 +31,7 @@ public class UrlBuilderTest {
 
     @Test
     public void testSearchPath() {
-        String url = urlBuilder.createSearchUrl();
+        String url = urlBuilder.createSearchUrl("1");
         Assert.assertNotNull(url);
         Assert.assertTrue(url.contains("api_key=aChgT7mzZKxEM9LXuB3qnPCanyvFwkovnkr7EOPT"));
         Assert.assertTrue(url.contains("/auto/search"));

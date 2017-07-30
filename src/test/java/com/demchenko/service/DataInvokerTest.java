@@ -21,7 +21,7 @@ public class DataInvokerTest {
 
     @Before
     public void invokeUrl() {
-        response = dataInvoker.getAllAdIds(urlBuilder.createSearchUrl());
+        response = dataInvoker.getAllAdIds(urlBuilder.createSearchUrl("1"));
     }
 
     @Test

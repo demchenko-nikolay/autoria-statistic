@@ -13,9 +13,10 @@ public class UrlBuilder {
     @Autowired
     UrlBean urlBean;
 
-    public String createSearchUrl() {
+    public String createSearchUrl(String page) {
         String path = urlBean.getSearch();
         MultiValueMap<String, String> parameters = urlBean.getParametersMap();
+        parameters.add("page", page);
         return createUrl(path, parameters);
     }
 

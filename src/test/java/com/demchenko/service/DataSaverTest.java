@@ -1,7 +1,6 @@
 package com.demchenko.service;
 
 import org.json.JSONException;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +9,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@Ignore
-public class DataParserTest {
+public class DataSaverTest {
     @Autowired
-    DataParser dataParser;
+    DataSaver dataSaver;
 
     @Test
-    public void testResponseParsing() throws JSONException {
-        dataParser.getAllAdIds("1");
+    public void testSavingWholeTable() throws JSONException, InterruptedException {
+        dataSaver.saveAllAvailableAds();
     }
-
-    @Test
-    public void testNumberOfAds() throws JSONException {
-        System.out.println(dataParser.getNumberOfAds());
-    }
-
 }
